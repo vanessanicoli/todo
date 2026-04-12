@@ -41,3 +41,34 @@ body{
 h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
     font-family: "Saira Stencil", sans-serif;
 }
+
+/* HEADER */
+.header-custom{
+    height: 10vh;
+    background-color: var(--beige);
+    color: var(--shadowgray);
+}
+
+/* SECTION: BUTTONS */
+.btn-custom{
+    background-color: transparent;
+    border: 3px solid var(--beige);
+    color: var(--bone);
+    padding: 10px;
+    height: 8vh;
+    transition: 0.8s;
+}
+
+.btn-custom:hover{
+    transform: scale(1.1);
+    background-color: var(--bone);
+    color: var(--shadowgray);
+}
+
+#addNewTaskInput{
+    width: 60%;
+}
+
+.form-control{
+    height: 8vh;
+}

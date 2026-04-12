@@ -17,8 +17,37 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
+    <!-- HEADER -->
+    <header class="container-fluid header-custom d-flex justify-content-center align-items-center mb-4">
+        <h1 class="text-center display-4 fw-bold">To-Do List</h1>
+    </header>
+    <!-- END HEADER -->
 
-    <h1>Hello, world!</h1>
+    <!-- SECTION: BUTTONS -->
+    <section class="container-fluid">
+
+        <div class="row justify-content-center align-items-center">
+
+            <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+                <button id="showTaskBtn" class="btn-custom text-uppercase">
+                    Show Task List
+                </button>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <form>
+                <div class="mb-3 d-flex justify-content-center align-items-center">
+                    <input type="email" class="form-control me-4" id="addNewTaskInput" placeholder="Name of your new task">
+                    <button id="addNewTaskBtn" type="button" class="btn-custom text-uppercase d-inline">Add New Task</button>
+                </div>
+                </form>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- END SECTION: BUTTONS -->
+
 
     <!-- BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
