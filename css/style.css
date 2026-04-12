@@ -1,0 +1,43 @@
+/* COLORS AND COLORS CLASSES */
+:root{
+    --shadowgray: rgb(37, 35, 35);
+    --beige: rgb(169, 153, 133);
+    --bone: rgb(218, 210, 188);
+}
+
+.bg-sg{
+    background-color: var(--shadowgray);
+}
+
+.text-sg{
+    color: var(--shadowgray);
+}
+
+.bg-be{
+    background-color: var(--beige);
+}
+
+.text-be{
+    color: var(--beige);
+}
+
+.bg-bo{
+    background-color: var(--bone);
+}
+
+.text-bo{
+    color: var(--bone);
+}
+
+/* FONTS */
+
+body{
+    background-color: var(--shadowgray);
+    color: var(--bone);
+    font-family: "Work Sans", sans-serif;
+    font-size: 18px;
+}
+
+h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
+    font-family: "Saira Stencil", sans-serif;
+}
