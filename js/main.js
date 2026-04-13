@@ -71,7 +71,10 @@ function addNewTask(){
 
         addNewTaskInput.value = '';
         addNewTaskInput.placeholder = `Name of your new task`;
-        showList();
+
+        if(checkShow == true){
+            renderList();
+        }
 
     }
     
