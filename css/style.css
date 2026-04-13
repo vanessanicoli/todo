@@ -56,6 +56,7 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
     color: var(--bone);
     padding: 10px;
     height: 8vh;
+    width: 200px;
     transition: 0.8s;
 }
 
@@ -71,4 +72,70 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
 
 .form-control{
     height: 8vh;
+    font-size: 18px;
+    border-radius: 0px;
+    background-color: var(--bone);
+    border: 3px solid var(--beige);
+}
+
+.form-control:focus{
+    border-color: var(--beige);
+    background-color: var(--bone);
+    box-shadow: none;
+}
+
+.form-check-input{
+    cursor: pointer;
+}
+
+.form-check-input:checked{
+    border-color: var(--beige);
+    background-color: var(--bone);
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.form-check-input:focus{
+    box-shadow: none;
+}
+
+.input-error::placeholder {
+    color: red;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* SECTION: TASK LIST */
+
+.wrapperList{
+    background-color: var(--beige);
+    /* height: 100vh; */
+    padding: 30px 50px;
+    margin-top: 40px;
+}
+
+.rowTask{
+    background-color:var(--shadowgray);
+    border: 3px solid var(--bone);
+    height: 70px;
+    margin-bottom: 20px;
+}
+
+.icon{
+    cursor: pointer;
+}
+
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 900px){
+    
+    .btn-custom{
+        padding: 5px;
+    }
+
+    .wrapperList{
+        padding: 30px 30px;
+    }
+
 }

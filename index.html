@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,9 @@
 
     <!-- BOOTSTRAP CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,18 +30,36 @@
     <section class="container-fluid">
 
         <div class="row justify-content-center align-items-center">
-
-            <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+            <!-- SHOW TASK LIST BUTTON -->
+            <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mt-3 mt-md-0 order-2 order-md-1">
                 <button id="showTaskBtn" class="btn-custom text-uppercase">
                     Show Task List
                 </button>
             </div>
-
-            <div class="col-12 col-md-6">
+            <!-- INPUT + ADD NEW TASK BUTTON -->
+            <div class="col-12 col-md-6 order-1 order-md-2">
                 <form>
-                <div class="mb-3 d-flex justify-content-center align-items-center">
-                    <input type="email" class="form-control me-4" id="addNewTaskInput" placeholder="Name of your new task">
-                    <button id="addNewTaskBtn" type="button" class="btn-custom text-uppercase d-inline">Add New Task</button>
+                <div class="mb-3 d-flex justify-content-start align-items-center">
+                    <input type="text" class="form-control me-4" id="addNewTaskInput" placeholder="Name of your new task">
+                    <button id="addNewTaskBtn" type="button" class="btn-custom text-uppercase">
+                        Add New Task
+                    </button>
+                </div>
+                <!-- PRIORITY -->
+                <div class=" d-flex flex-column flex-md-row">
+                    <p class="d-inline me-4 mb-0">Priority: </p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="priorityOptions" id="priorityLow" value="low" checked>
+                        <label class="form-check-label" for="priorityLow">Low</label>
+                    </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="priorityOptions" id="priorityMedium" value="medium">
+                        <label class="form-check-label" for="priorityMedium">Medium</label>
+                    </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="priorityOptions" id="priorityHigh" value="high">
+                        <label class="form-check-label" for="priorityHigh">High</label>
+                    </div>
                 </div>
                 </form>
             </div>
@@ -48,6 +69,13 @@
     </section>
     <!-- END SECTION: BUTTONS -->
 
+    <!-- SECTION: TASK LIST -->
+    <section id="wrapperList" class="container wrapperList d-none">
+
+        
+    </section>
+    <!-- END SECTION: TASK LIST -->
+    
 
     <!-- BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
