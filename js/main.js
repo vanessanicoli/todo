@@ -96,9 +96,10 @@ function editTaskMode(task){
     editTitle.value = task.name;
     
     let priorityWrapper = document.createElement('div');
-    
+    priorityWrapper.classList.add('d-flex', 'flex-column', 'flex-md-row');
+
     let priority = document.createElement('p');
-    priority.classList.add('d-inline', 'me-4', 'text-uppercase', 'fs-6');
+    priority.classList.add('d-inline', 'me-4','mb-0', 'mt-3', 'mt-md-0' ,'text-uppercase', 'fs-6');
     priority.textContent = `Priority: `;
     
     priorityWrapper.append(
@@ -181,6 +182,7 @@ function createTaskElement(task){
         row.append(viewTaskMode(task));
     }
     else{
+        row.classList.add('rowEdit');
         row.append(editTaskMode(task));
     }
 
