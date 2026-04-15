@@ -133,6 +133,13 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
     text-decoration: line-through;
 }
 
+.form-edit{
+    height: 4vh;
+    font-size: 18px;
+    border-radius: 0px;
+    background-color: var(--bone);
+    border: 3px solid var(--beige);
+}
 
 
 /* MEDIA QUERIES */
