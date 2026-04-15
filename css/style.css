@@ -125,6 +125,14 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
     cursor: pointer;
 }
 
+.completed{
+    opacity: 0.5;
+}
+
+.completed h4{
+    text-decoration: line-through;
+}
+
 
 
 /* MEDIA QUERIES */
