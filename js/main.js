@@ -1,11 +1,14 @@
-// LIST OF TASKS
+// -------------------------------------------------- LIST OF TASKS  ---------------------------------------------------
+
 let taskList = [
-    { name: "Go shopping", isCompleted: false, isEditing: false, priority: "low" },
-    { name: "Go to the gym", isCompleted: true, isEditing: false, priority: "medium" },
-    { name: "Finish work", isCompleted: false, isEditing: false, priority: "high" },
+    {   id: crypto.randomUUID(), //browser creates random id
+        name: "Go shopping", isCompleted: false, isEditing: false, priority: "low" },
+    { id: crypto.randomUUID(), name: "Go to the gym", isCompleted: false, isEditing: false, priority: "medium" },
+    { id: crypto.randomUUID(), name: "Finish work", isCompleted: false, isEditing: false, priority: "high" },
 ];
 
-// SELECTORS
+// ----------------------------------------------------- SELECTORS -----------------------------------------------------
+
 let showTaskBtn = document.querySelector('#showTaskBtn');
 let wrapperList = document.querySelector('#wrapperList');
 
@@ -15,8 +18,11 @@ let addNewTaskBtn = document.querySelector('#addNewTaskBtn');
 let addNewTaskInput = document.querySelector('#addNewTaskInput'); 
 
 
-// FUNCTIONS
-function createTaskElement(task, index){
+
+// ----------------------------------------------------- FUNCTIONS -----------------------------------------------------
+
+// createTaskElement(task) : create task row to show in the task list
+function createTaskElement(task){
     let row = document.createElement('div');
     row.classList.add('row', 'justify-content-center', 'align-items-center', 'rowTask');
     
@@ -40,6 +46,11 @@ function createTaskElement(task, index){
     deleteIcon.classList.add('iconDelete', 'icon', 'bi', 'bi-trash3-fill');
     deleteIcon.title = 'Delete your task';
 
+    // EVENT
+    deleteIcon.addEventListener('click', ()=>{
+        deleteTask(task.id);
+    })
+
     if(!task.isCompleted){
         let completeIcon = document.createElement('i');
         completeIcon.classList.add('iconComplete', 'icon', 'bi', 'bi-check-lg', 'fs-3');
@@ -50,19 +61,29 @@ function createTaskElement(task, index){
         editIcon.title = 'Edit your task';
     
         col2.append(completeIcon, editIcon, deleteIcon);
+
+        // EVENTS
+        completeIcon.addEventListener('click', ()=>{
+            completeTask(task.id);
+        })
     }
     else{
         
         let notCompletedIcon = document.createElement('i');
         notCompletedIcon.classList.add('iconNotComplete', 'icon', 'bi', 'bi-x-lg', 'fs-4');
         notCompletedIcon.title = 'Mark as not completed';
-
+        
         col2.append(notCompletedIcon, deleteIcon);
+
+        // EVENTS
+        notCompletedIcon.addEventListener('click', ()=>{
+            notCompletedTask(task.id);
+        })
     }
+
 
     row.append(col1, col2);
 
-    
     if(task.isCompleted){
         row.classList.add('completed');
     }
@@ -70,9 +91,12 @@ function createTaskElement(task, index){
     return row;
 }
 
+// renderList() : create headers and inserts active and completed task in relative sections
 function renderList(){
     let activeTasks = taskList.filter((task)=> !task.isCompleted);
     let completedTasks = taskList.filter((task)=> task.isCompleted);
+
+    wrapperList.innerHTML = ``;
 
     // ACTIVE
     let header2 = document.createElement('header');
@@ -86,9 +110,18 @@ function renderList(){
     header2.appendChild(h2);
     wrapperList.appendChild(header2);
     
-    activeTasks.forEach((task,index)=>{
-        wrapperList.appendChild(createTaskElement(task, index));
-    });
+    if(activeTasks == ''){
+        let p = document.createElement('p');
+        p.classList.add('lead', 'text-uppercase', 'text-center', 'text-sg', 'fs-3', 'mb-0');
+        p.textContent = `You don't have any tasks to complete`;
+
+        wrapperList.appendChild(p);
+    }
+    else{
+        activeTasks.forEach((task,index)=>{
+            wrapperList.appendChild(createTaskElement(task));
+        });
+    }
 
     // COMPLETED
     h3.classList.add('text-center','display-7', 'mb-3', 'mt-5', 'text-sg', 'fw-bold');
@@ -97,11 +130,21 @@ function renderList(){
     header3.appendChild(h3);
     wrapperList.appendChild(header3);
 
-    completedTasks.forEach((task,index)=>{
-        wrapperList.appendChild(createTaskElement(task, index));
-    });
+    if(completedTasks == ''){
+        let p = document.createElement('p');
+        p.classList.add('lead', 'text-uppercase', 'text-center', 'text-sg', 'fs-4', 'mb-0');
+        p.textContent = `You don't have any completed tasks`;
+
+        wrapperList.appendChild(p);
+    }
+    else{
+        completedTasks.forEach((task,index)=>{
+            wrapperList.appendChild(createTaskElement(task));
+        });
+    }
 };
 
+// showList() : shows task list and changes button layout
 function showList() {
     if(!checkShow){
         showTaskBtn.innerHTML = `Hide task list`
@@ -117,6 +160,7 @@ function showList() {
     }
 };
 
+// addNewTask() : add a new task and shows new task list
 function addNewTask(){
 
     let checkInput = document.querySelector('.form-check-input:checked');
@@ -128,7 +172,7 @@ function addNewTask(){
     else {
         addNewTaskInput.classList.remove('is-invalid','input-error');
 
-        taskList.push({name: addNewTaskInput.value, isCompleted: false, isEditing: false, priority: checkInput.value});
+        taskList.push({id: crypto.randomUUID(), name: addNewTaskInput.value, isCompleted: false, isEditing: false, priority: checkInput.value});
 
         addNewTaskInput.value = '';
         addNewTaskInput.placeholder = `Name of your new task`;
@@ -143,16 +187,36 @@ function addNewTask(){
     
 };
 
-// EVENT: SHOW TASK LIST
+// completeTask() : searchs the id of the current task and sets task as completed
+function completeTask(id){
+    let task = taskList.find(currentTask => currentTask.id === id);
+    task.isCompleted = true;
+    renderList();
+}
 
+// deleteTask() : creates a new array with all the tasks different from the current one 
+// (deleting it without losing original array)
+function deleteTask(id){
+    taskList = taskList.filter(allTasks => allTasks.id !== id);
+    renderList();
+}
+
+// notCompletedTask() : searchs the id of the current task and sets task as not completed
+function notCompletedTask(id){
+    let task = taskList.find(currentTask => currentTask.id === id);
+    task.isCompleted = false;
+    renderList();
+}
+
+// -------------------------------------------------- EVENTS ---------------------------------------------------
+
+// SHOW TASK LIST
 showTaskBtn.addEventListener('click', showList);
 
-// EVENT: ADD NEW TASK
+// ADD NEW TASK
 addNewTaskBtn.addEventListener('click', addNewTask);
 
-// EVENT: COMPLETE TASK 
-// EVENT: MODIFY TASK
-// EVENT: DELETE TASK
+
 
 // PLUS: ORDER BY NAME .sort()
 // PLUS: FILTER BY PRIORITY .filter()
