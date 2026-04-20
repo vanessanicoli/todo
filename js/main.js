@@ -247,13 +247,13 @@ function showList() {
     if(!checkShow){
         showTaskBtn.innerHTML = `Hide task list`
         checkShow = true;
-        wrapperList.classList.remove('d-none');
+        wrapperList.classList.remove('invisible', 'vh-30');
         renderList();
     } 
     else {
         showTaskBtn.innerHTML = `Show task list`
         checkShow = false;
-        wrapperList.classList.add('d-none');
+        wrapperList.classList.add('invisible', 'vh-30');
         wrapperList.innerHTML = ``
     }
 };
